@@ -1,0 +1,54 @@
+--AGREGAR
+CREATE Procedure DAO_Boleta_AGREGAR
+begin
+    declare @numero as int
+	declare @total as int
+	declare @emp int
+	declare @pago int
+	declare @sucur int
+	declare @pedido int
+	set @numero =(Select COUNT(*)+1 from boleta)
+	
+	set @total= (Select SUM(total.cantPre) 
+				from (Select (cantidad.ProCant*pres.proPrecio) as cantPre
+						from (Select cant as ProCant from detalle_boleta where id_boleta=@numero) cantidad
+							,(Select precio as proPrecio from producto_precio) pres) total)
+	
+	insert into boleta(id_boleta,total,id_empleado,id_forma_pago,id_pedido_local)
+			values(@numero,@total,@emp,@pago,@pedido,@sucur )
+	
+end
+GO
+
+
+--Eliminar
+Create Procedure DAO_Boleta_ELIMINAR(
+	@idboleta INTEGER
+)
+as
+begin
+delete from boleta 
+ where @idboleta = id_boleta
+end
+GO
+
+
+--ACTUALIZAR
+CREATE PROCEDURE DAO_Boleta_ACTUALIZAR(
+	 @numero  int,
+	 @total  int,
+	 @emp int,
+	 @pago int,
+	 @sucur int,
+	 @pedido int
+)
+AS
+BEGIN
+	UPDATE boleta set @numero = id_boleta ,
+	total=@total,@emp=id_empleado,@pago=id_forma_pago,
+		@sucur=	id_sucursal,@pedido= id_pedido_local
+	WHERE @numero=id_boleta
+END
+GO
+
+

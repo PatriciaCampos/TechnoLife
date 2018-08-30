@@ -1,0 +1,36 @@
+--AGREGAR
+create Procedure DAO_COMUNA_AGREGAR(
+	@id int,
+	@nombre varchar(30)
+)
+AS
+BEGIN
+	set @id= (Select COUNT(*)+1 from comuna)
+	
+	insert into comuna(id_comuna,nombre_comuna) 
+				values(@id,@nombre)
+END
+GO
+
+--ACTUALIZAR
+create Procedure DAO_COMUNA_ACTUALIZAR(
+	@id int,
+	@nombre VARCHAR(30)
+)
+AS
+BEGIN
+	UPDATE comuna SET id_comuna=id_comuna, @nombre=nombre_comuna
+	WHERE id_comuna=@id
+END
+GO
+
+
+--ELIMINAR
+create Procedure DAO_COMUNA_ELIMINAR
+	@id int
+AS
+BEGIN
+	DELETE FROM comuna 
+	WHERE id_comuna=@id
+END
+GO
