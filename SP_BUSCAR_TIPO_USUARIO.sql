@@ -1,9 +1,0 @@
-CREATE PROCEDURE SP_BUSCAR_TIPO_USUARIO
-(
- @id_tipo     INTEGER
-)
-AS
-BEGIN
-SELECT * FROM tipo_usuario WHERE id_tipo=@id_tipo
-END
-GO
