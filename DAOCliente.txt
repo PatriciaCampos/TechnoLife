@@ -30,7 +30,7 @@ CREATE procedure DAOClienteActualizar
  @activo INTEGER
 ) 
 as
-update Cliente set id_cliente = @id_cliente, rut_cliente = @rut_cliente, nombres = @nombres, apellidos = @apellidos, fecha_nacimiento = @fecha_nacimiento, id_comuna = @id_comuna, telefono = @telefono, correo = @correo, activo = @activo
+update Cliente set rut_cliente = @rut_cliente, nombres = @nombres, apellidos = @apellidos, fecha_nacimiento = @fecha_nacimiento, id_comuna = @id_comuna, telefono = @telefono, correo = @correo, activo = @activo
 where id_cliente = @id_cliente
 GO
 

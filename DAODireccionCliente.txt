@@ -13,7 +13,7 @@ CREATE Procedure DAODireccionClienteInsertar
 as
 begin
  insert into direccion_cliente ([id_cliente], [nombres], [apellidos], [informacion], [zip], [id_comuna], [direccion], [telefono], [celular]) 
- values (@id_direccion, @id_cliente, @nombres, @apellidos, @informacion, @zip, @id_comuna, @direccion, @telefono, @celular)
+ values (@id_cliente, @nombres, @apellidos, @informacion, @zip, @id_comuna, @direccion, @telefono, @celular)
 end
 GO
 

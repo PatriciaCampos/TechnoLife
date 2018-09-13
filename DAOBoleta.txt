@@ -31,8 +31,7 @@ CREATE PROCEDURE DaoBoletaActualizar(
 )
 AS
 BEGIN
-	UPDATE boleta set @numero = id_boleta ,
-	total=@total,@emp=id_empleado,@pago=id_forma_pago,
+	UPDATE boleta set total=@total,@emp=id_empleado,@pago=id_forma_pago,
 		@sucur=	id_sucursal,@pedido= id_pedido_local
 	WHERE @numero=id_boleta
 END
