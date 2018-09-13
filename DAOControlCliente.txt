@@ -1,0 +1,51 @@
+CREATE Procedure DAOControlClienteInsertar
+(
+ @id_cliente INTEGER,
+ @usuario varchar(30),
+ @clave varchar(30),
+ @activo INTEGER
+)
+as
+begin
+ insert into control_cliente ([id_cliente], [usuario], [clave],[activo]) 
+ values (@id_cliente,@usuario,@clave,@activo)
+end
+GO
+
+
+
+CREATE procedure DAOControlClienteActualizar
+(
+ @id_control_c INTEGER,
+ @id_cliente INTEGER,
+ @usuario varchar(30),
+ @clave varchar(30),
+ @activo INTEGER
+) 
+as
+update control_cliente set id_cliente = @id_cliente, usuario = @usuario, clave  = @clave , activo  = @activo
+where id_control_c = @id_control_c 
+GO
+
+
+
+CREATE procedure DAOControlClienteEliminar
+(
+  @id_control_c INTEGER
+)
+as
+delete  from control_cliente 
+ where @id_control_c = id_control_c 
+GO
+
+
+
+CREATE PROCEDURE DAOControlClienteBuscar
+(
+  @id_control_c INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM control_cliente WHERE id_control_c = @id_control_c 
+END
+GO

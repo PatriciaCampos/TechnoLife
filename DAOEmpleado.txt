@@ -1,6 +1,5 @@
-CREATE Procedure SP_INSERTAR_EMPLEADO
+CREATE procedure DAOEmpleadoInsertar
 (
-    @id_empleado      INTEGER,
     @rut_empleado     VARCHAR (30),
     @nombres          VARCHAR (60),
     @apellidos        VARCHAR (30),
@@ -12,15 +11,15 @@ CREATE Procedure SP_INSERTAR_EMPLEADO
 )
 as
 begin
- insert into empleado ([id_empleado], [rut_empleado], [nombres], [apellidos], 
+ insert into empleado ([rut_empleado], [nombres], [apellidos], 
  [fecha_nacimiento], [telefono], [id_comuna], [correo], [activo]) 
- values (@id_empleado, @rut_empleado, @nombres, @apellidos, @fecha_nacimiento, @telefono,
+ values (@rut_empleado, @nombres, @apellidos, @fecha_nacimiento, @telefono,
  @id_comuna, @correo, @activo)
 end
 GO
 
 
-CREATE procedure PROC_ACTUALIZAR_EMPLEADO
+CREATE procedure DAOEmpleadoActualizar
 (
     @id_empleado      INTEGER,
     @rut_empleado     VARCHAR (30),
@@ -40,11 +39,23 @@ where id_empleado = @id_empleado
 GO
 
 
-CREATE procedure PROC_ELIMINAR_EMPLEADO
+CREATE procedure DAOEmpleadoEliminar
 (
  @id_empleado INTEGER 
 )
 as
 delete from empleado 
  where @id_empleado = id_empleado
+GO
+
+
+
+CREATE PROCEDURE DAOEmpleadoBuscar
+(
+  @id_empleado INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM empleado WHERE id_empleado = @id_empleado 
+END
 GO

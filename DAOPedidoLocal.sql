@@ -1,6 +1,5 @@
-CREATE Procedure SP_INSERTAR_PEDIDO_LOCAL
+CREATE procedure DAOPedidoLocalInsertar
 (
- @id_pedido_local INTEGER,
  @id_cliente INTEGER,
  @glosa VARCHAR(300),
  @descuento INTEGER,
@@ -12,13 +11,13 @@ CREATE Procedure SP_INSERTAR_PEDIDO_LOCAL
 )
 as
 begin
-insert into pedido_local ([id_pedido_local], [id_cliente], [glosa], [descuento], [total], [fecha_termino], [fecha_inscrita], [id_forma_envio], [id_sucursal]) 
-values (@id_pedido_local, @id_cliente, @glosa, @descuento, @total, @fecha_termino, @fecha_inscrita, @id_forma_envio, @id_sucursal)
+insert into pedido_local ([id_cliente], [glosa], [descuento], [total], [fecha_termino], [fecha_inscrita], [id_forma_envio], [id_sucursal]) 
+values (@id_cliente, @glosa, @descuento, @total, @fecha_termino, @fecha_inscrita, @id_forma_envio, @id_sucursal)
 end
 GO
 
 
-CREATE procedure SP_ACTUALIZAR_PEDIDO_LOCAL
+CREATE procedure DAOPedidoLocalActualizar
 (
  @id_pedido_local INTEGER,
  @id_cliente INTEGER,
@@ -36,11 +35,23 @@ where id_pedido_local = @id_pedido_local
 GO
 
 
-CREATE procedure SP_ELIMINAR_PEDIDO_LOCAL
+CREATE procedure DAOPedidoLocalEliminar
 (
  @id_pedido_local INTEGER 
 )
 as
 delete from pedido_local 
  where @id_pedido_local = id_pedido_local
+GO
+
+
+
+CREATE PROCEDURE DAOPedidoLocalBuscar
+(
+  @id_pedido_local INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM pedido_local WHERE id_pedido_local =@id_pedido_local 
+END
 GO

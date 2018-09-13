@@ -1,0 +1,60 @@
+CREATE Procedure DAOProductoInsertar
+(
+ @codProducto int,
+ @nombreProducto varchar(50),
+ @imagen varchar(60),
+ @tamano varchar(60),
+ @activo int,
+ @idCate int
+)
+as
+begin
+insert into Producto ([cod_producto], [nombre_producto], [imagen], [tamano], [activo],[id_cate]) 
+values (@codProducto, @nombreProducto, @imagen, @tamano,
+ @activo,
+ @idCate)
+end
+GO
+
+
+
+CREATE procedure DAOProductoActualizar
+(
+ @id_producto int,
+ @cod_producto int,
+ @nombre_producto varchar(50),
+ @imagen varchar(60),
+ @tamano varchar(60),
+ @activo int,
+ @idCate int
+) 
+as
+update producto set cod_producto = @cod_producto, nombre_producto= @nombre_producto, imagen = @imagen, tamano=@tamano,activo=@activo, id_cate=@idCate
+where id_producto = @id_producto 
+GO
+
+
+
+CREATE procedure DAOProductoEliminar
+(
+ @id_producto INTEGER 
+)
+as
+delete from producto 
+ where @id_producto = id_producto
+GO
+
+
+
+CREATE PROCEDURE DAOProductoBuscar
+(
+  @id_producto INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM producto WHERE id_producto =@id_producto 
+END
+GO
+
+
+

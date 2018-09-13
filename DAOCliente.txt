@@ -1,0 +1,58 @@
+CREATE procedure DAOClienteInsertar
+(
+ @rut_cliente VARCHAR(10),
+ @nombres VARCHAR,
+ @apellidos VARCHAR,
+ @fecha_nacimiento DATE,
+ @id_comuna INTEGER,
+ @telefono INTEGER,
+ @correo VARCHAR,
+ @activo INTEGER
+)
+as
+begin
+ insert into Cliente ([rut_cliente], [nombres], [apellidos], [fecha_nacimiento], [id_comuna], [telefono], [correo], [activo]) 
+ values (@rut_cliente, @nombres, @apellidos, @fecha_nacimiento, @id_comuna, @telefono, @correo, @activo)
+end
+GO
+
+
+CREATE procedure DAOClienteActualizar
+(
+ @id_cliente INTEGER,
+ @rut_cliente VARCHAR(10),
+ @nombres VARCHAR,
+ @apellidos VARCHAR,
+ @fecha_nacimiento DATE,
+ @id_comuna INTEGER,
+ @telefono INTEGER,
+ @correo VARCHAR,
+ @activo INTEGER
+) 
+as
+update Cliente set id_cliente = @id_cliente, rut_cliente = @rut_cliente, nombres = @nombres, apellidos = @apellidos, fecha_nacimiento = @fecha_nacimiento, id_comuna = @id_comuna, telefono = @telefono, correo = @correo, activo = @activo
+where id_cliente = @id_cliente
+GO
+
+
+
+CREATE procedure DAOClienteEliminar
+(
+ @id_cliente INTEGER
+)
+as
+delete from Cliente 
+ where @id_cliente = id_cliente
+GO
+
+
+
+CREATE PROCEDURE DAOClienteBuscar
+(
+  @rut_cliente  INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM cliente WHERE rut_cliente  = @rut_cliente 
+END
+GO

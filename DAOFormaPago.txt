@@ -1,0 +1,45 @@
+ CREATE PROCEDURE DAOFormaPagoInsertar
+(
+  @nombre_pago VARCHAR(30)
+)
+AS
+BEGIN
+ INSERT INTO forma_pago (nombre_pago) 
+ VALUES (@nombre_pago)
+END
+GO
+
+
+
+CREATE PROCEDURE DAOFormaPagoActualizar
+(
+  @id_forma_pago INTEGER ,
+  @nombre_pago VARCHAR(30)
+) 
+AS
+UPDATE forma_pago SET nombre_pago = @nombre_pago
+WHERE id_forma_pago = @id_forma_pago
+GO
+
+
+
+CREATE PROCEDURE DAOFormaPagoEliminar
+(
+  @id_forma_pago INTEGER
+)
+AS
+DELETE FROM forma_pago 
+ WHERE @id_forma_pago = id_forma_pago
+GO
+
+
+
+CREATE PROCEDURE DAOFormaPagoBuscar
+(
+  @id_forma_pago INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM forma_pago WHERE id_forma_pago=@id_forma_pago
+END
+GO

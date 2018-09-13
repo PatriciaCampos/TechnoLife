@@ -1,22 +1,21 @@
-CREATE Procedure SP_INSERTAR_CONTROL_EMPLEADO
+CREATE procedure DAOControlEmpleadoInsertar
 (
-    @codigo			INTEGER,
-    @usuario		VARCHAR (30),
-    @clave          VARCHAR (30),
-    @id_tipo        INTEGER,
+    @usuario	VARCHAR (30),
+    @clave          	VARCHAR (30),
+    @id_tipo        	INTEGER,
     @id_empleado	INTEGER,
-    @activo         INTEGER
+    @activo         	INTEGER
 )
 as
 begin
- insert into control_empleado ([codigo], [usuario], [clave], [id_tipo], 
+ insert into control_empleado ([usuario], [clave], [id_tipo], 
  [id_empleado], [activo]) 
- values (@codigo, @usuario, @clave, @id_tipo, @id_empleado, @activo)
+ values (@usuario, @clave, @id_tipo, @id_empleado, @activo)
 end
 GO
 
 
-CREATE procedure SP_ACTUALIZAR_CONTROL_EMPLEADO
+CREATE procedure DAOControlEmpleadoActualizar
 (
     @codigo			INTEGER,
     @usuario		VARCHAR (30),
@@ -32,11 +31,23 @@ where codigo = @codigo
 GO
 
 
-CREATE procedure SP_ELIMINAR_CONTROL_EMPLEADO
+CREATE procedure DAOControlEmpleadoEliminar
 (
  @codigo INTEGER 
 )
 as
 delete from control_empleado 
  where @codigo = codigo
+GO
+
+
+
+CREATE PROCEDURE DAOControlEmpleadoBuscar
+(
+  @codigo INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM control_empleado WHERE codigo= @codigo
+END
 GO

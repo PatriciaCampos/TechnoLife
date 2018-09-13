@@ -1,7 +1,6 @@
 
-CREATE Procedure SP_INSERTAR_DETALLE_BOLETA
+CREATE Procedure DAODetalleBoletaInsertar
 (
- @id_detalle INTEGER,
  @id_producto_p INTEGER,
  @id_boleta INTEGER,
  @precio INTEGER,
@@ -10,13 +9,13 @@ CREATE Procedure SP_INSERTAR_DETALLE_BOLETA
 )
 as
 begin
-insert into detalle_boleta ([id_detalle], [id_producto_p], [id_boleta], [precio], [cant], [total]) 
-values (@id_detalle, @id_producto_p, @id_boleta, @precio, @cant, @total)
+insert into detalle_boleta ([id_producto_p], [id_boleta], [precio], [cant], [total]) 
+values (@id_producto_p, @id_boleta, @precio, @cant, @total)
 end
 GO
 
 
-CREATE procedure SP_ACTUALIZAR_DETALLE_BOLETA
+CREATE procedure DAODetalleBoletaActualizar
 (
  @id_detalle INTEGER,
  @id_producto_p INTEGER,
@@ -31,11 +30,23 @@ where id_detalle = @id_detalle
 GO
 
 
-CREATE procedure SP_ELIMINAR_DETALLE_BOLETA
+CREATE procedure DAODetalleBoletaEliminar
 (
  @id_detalle INTEGER 
 )
 as
 delete from detalle_boleta 
  where @id_detalle = id_detalle
+GO
+
+
+
+CREATE PROCEDURE DAODetalleBoletaBuscar
+(
+  @id_detalle INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM detalle_boleta WHERE id_detalle = @id_detalle 
+END
 GO

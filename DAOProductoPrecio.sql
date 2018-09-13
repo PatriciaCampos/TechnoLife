@@ -1,20 +1,19 @@
 
-CREATE Procedure SP_INSERTAR_PRODUCTO_PRECIO
+CREATE procedure DAOProductoPrecioInsertar
 (
- @id_producto_p INTEGER,
  @id_producto INTEGER,
  @descripcion VARCHAR(40),
  @precio INTEGER
 )
 as
 begin
- insert into producto_precio ([id_producto_p], [id_producto], [descripcion], [precio]) 
-values (@id_producto_p, @id_producto, @descripcion, @precio)
+ insert into producto_precio ([id_producto], [descripcion], [precio]) 
+values (@id_producto, @descripcion, @precio)
 end
 GO
 
 
-CREATE procedure SP_ACTUALIZAR_PRODUCTO_PRECIO
+CREATE procedure DAOProductoPrecioActualizar
 (
  @id_producto_p INTEGER,
  @id_producto INTEGER,
@@ -27,11 +26,23 @@ where id_producto_p = @id_producto_p
 GO
 
 
-CREATE procedure SP_ELIMINAR_PRODUCTO_PRECIO
+CREATE procedure DAOProductoPrecioEliminar
 (
  @id_producto_p INTEGER 
 )
 as
 delete from producto_precio 
  where @id_producto_p = id_producto_p
+GO
+
+
+
+CREATE PROCEDURE DAOProductoPrecioBuscar
+(
+  @id_producto_p INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM producto_precio WHERE id_producto_p = @id_producto_p  
+END
 GO

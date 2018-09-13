@@ -1,0 +1,46 @@
+CREATE procedure DAOCategoriaInsertar
+(
+ @nombre_cate varchar(40),
+ @activo INTEGER
+)
+as
+begin
+ insert into categoria ([nombre_cate], [activo] ) values (@nombre_cate, @activo)
+end
+GO
+
+
+
+CREATE procedure DAOCategoriaActualizar
+(
+  @id_cate INTEGER,
+  @nombre_cate varchar(40),
+  @activo INTEGER
+) 
+as
+update categoria set nombre_cate = @nombre_cate, activo = @activo
+where id_cate = @id_cate
+GO
+
+
+
+CREATE procedure DAOCategoriaEliminar
+(
+ @id_cate INTEGER 
+)
+as
+delete from categoria 
+ where @id_cate = id_cate
+GO
+
+
+
+CREATE PROCEDURE DAOCategoriaBuscar
+(
+  @id_cate INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM categoria WHERE id_cate =@id_cate 
+END
+GO

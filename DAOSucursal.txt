@@ -1,16 +1,15 @@
-CREATE Procedure PROC_INSERTAR_SUCURSAL
+CREATE procedure DAOSucursalInsertar
 (
- @id_sucursal INTEGER,
  @nombre_sucursal varchar(30)
 )
 as
 begin
- insert into sucursal ([id_sucursal], [nombre_sucursal]) values (@id_sucursal, @nombre_sucursal)
+ insert into sucursal ([nombre_sucursal]) values (@nombre_sucursal)
 end
 GO
 
 
-CREATE procedure PROC_ACTUALIZAR_SUCURSAL
+CREATE procedure DAOSucursalActualizar
 (
  @id_sucursal INTEGER,
  @nombre_sucursal varchar(30)
@@ -21,12 +20,23 @@ where id_sucursal = @id_sucursal
 GO
 
 
-CREATE procedure PROC_ELIMINAR_SUCURSAL
+CREATE procedure DAOSucursalEliminar
 (
 @id_sucursal INTEGER
 )
 as
 delete from sucursal 
  where @id_sucursal = id_sucursal
+GO
 
+
+
+CREATE PROCEDURE DAOSucursalBuscar
+(
+  @id_sucursal INTEGER 
+)
+AS
+BEGIN
+SELECT * FROM sucursal WHERE id_sucursal = @id_sucursal 
+END
 GO
