@@ -462,7 +462,7 @@ CREATE procedure DAODetalleCompraOnlineActualizar
  @total INTEGER
 ) 
 as
-update detalle_compra_online set @id_compra_online = @id_compra_online ,id_producto_p = @id_producto_p, id_boleta = @id_boleta, precio = @precio, cant = @cant, total = @total
+update detalle_compra_online set @id_compra_online = @id_compra_online ,id_producto_p = @id_producto_p, precio = @precio, cant = @cant, total = @total
 where id_detalle_online = @id_detalle_online
 GO
 
