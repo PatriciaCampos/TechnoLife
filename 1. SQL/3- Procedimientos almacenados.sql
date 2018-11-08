@@ -249,7 +249,8 @@ GO
 
 CREATE PROCEDURE NEGSucursalInsertar
 (
-  @nombre_sucursal VARCHAR(30)
+  @nombre_sucursal VARCHAR(30),
+ @id_comuna 	INTEGER
 )
 AS
 BEGIN
@@ -257,7 +258,7 @@ BEGIN TRY
  IF EXISTS(SELECT nombre_sucursal FROM sucursal WHERE nombre_sucursal=@nombre_sucursal)
 	PRINT 'DATO YA EXISTE'
  ELSE
-	EXEC dbo.DAOSucursalInsertar @nombre_sucursal 
+	EXEC dbo.DAOSucursalInsertar @nombre_sucursal, @id_comuna 
 END TRY
 BEGIN CATCH
   PRINT 'ERROR AL INSERTAR'
